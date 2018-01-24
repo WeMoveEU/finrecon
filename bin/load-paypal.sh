@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 DB=$1
 FILE=$2
@@ -6,7 +6,7 @@ FILE=$2
 QUERY="LOAD DATA INFILE '/var/lib/mysql-files/${FILE}'
 INTO TABLE paypal
 COLUMNS TERMINATED BY ','
-OPTIONALLY ENCLOSED BY '"'
+OPTIONALLY ENCLOSED BY '\"'
 IGNORE 1 LINES
 (@ddate, @dtime, @time_zone, @first_last_name, @type, @status, @currency, @gross, @fee, @net, @from_email, @to_email,
  @transaction_id, @shipping_address, @address_status, @item_title, @item_id, @shipping_amount, @insurance_amount,
@@ -31,9 +31,9 @@ SET
   address_status = @address_status,
   item_title = @item_title,
   item_id = @item_id,
-  shipping_amount = CASE WHEN @shipping_amount = '' THEN NULL ELSE @shipping_amount END,
-  insurance_amount = CASE WHEN @insurance_amount = '' THEN NULL ELSE @insurance_amount END,
-  sales_tax = CASE WHEN @sales_tax = '' THEN NULL ELSE @sales_tax END,
+  shipping_amount = CASE WHEN length(@shipping_amount) = 0 THEN NULL ELSE @shipping_amount END,
+  insurance_amount = CASE WHEN length(@insurance_amount) = 0 THEN NULL ELSE @insurance_amount END,
+  sales_tax = CASE WHEN length(@sales_tax) = 0 THEN NULL ELSE @sales_tax END,
   option_1_name = @option_1_name,
   option_1_value = @option_1_value,
   option_2_name = @option_2_name,
@@ -41,7 +41,7 @@ SET
   reference_txn_id = @reference_txn_id,
   invoice_number = @invoice_number,
   custom_number = @custom_number,
-  quantity = CASE WHEN @quantity = '' THEN NULL ELSE @quantity END,
+  quantity = CASE WHEN length(@quantity) = 0 THEN NULL ELSE @quantity END,
   receipt_id = @receipt_id,
   balance = replace(@balance, ',', '.'),
   address_line_1 = @address_line_1,
@@ -56,5 +56,5 @@ SET
   country_code = @country_code,
   balance_impact = @balance_impact"
 
-mysql ${DB} -e ${QUERY}
-echo -e "\n"
+mysql ${DB} -e "${QUERY}"
+echo "\n"
