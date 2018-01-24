@@ -6,10 +6,10 @@ DIR="../sql/version-$VER"
 
 if [ -d "$DIR" ]; then
 
-  mysql ${DB} < ../sql/version-${VER}/create_table.sql
-  mysql ${DB} < ../sql/version-${VER}/views.sql
-  mysql ${DB} < ../sql/version-${VER}/function.sql
-  mysql ${DB} < ../sql/version-${VER}/insert_data.sql
+  mysql ${DB} < ${DIR}/create_table.sql
+  mysql ${DB} < ${DIR}/views.sql
+  mysql ${DB} < ${DIR}/function.sql
+  mysql ${DB} < ${DIR}/insert_data.sql
 
 else
   echo "\nNo such version\n"
