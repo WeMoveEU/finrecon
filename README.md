@@ -13,7 +13,7 @@
   * sh load-paypal.sh DATABASE FILE
   * sh load-bank.sh DATABASE FILE
 
-## How to load paypal or bank
+## How to load stripe
 
 * copy csv files to `secure_file_priv` localization, probably `/var/lib/mysql-files/`
   * invoices.csv
