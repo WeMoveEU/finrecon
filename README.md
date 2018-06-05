@@ -2,8 +2,18 @@
 
 ## How to install
 
+* set mysql account with proper permissions
+
+```
+CREATE USER 'USER'@'localhost';
+GRANT SELECT, PROCESS, FILE, SHOW DATABASES, CREATE TEMPORARY TABLES, SHOW VIEW ON *.* TO 'USER'@'localhost';
+```
+
+* git clone this repo wherever you want
 * go to bin/ directory
 * sh install.sh DATABASE VERSION
+    * for each version beginning with the lowest version
+    * VERSION == 0.0.1, 0.0.2
 
 ## How to load paypal or bank
 
