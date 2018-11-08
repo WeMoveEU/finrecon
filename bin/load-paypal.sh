@@ -14,7 +14,7 @@ IGNORE 1 LINES
  @custom_number, @quantity, @receipt_id, @balance, @address_line_1, @address_line_2, @city, @state, @postal_code,
  @country, @phone_number, @subject, @note, @country_code, @balance_impact)
 SET
-  ddate = str_to_date(@ddate, '%c/%e/%Y'),
+  ddate = str_to_date(@ddate, '%d/%m/%Y'),
   dtime = @dtime,
   time_zone = @time_zone,
   first_last_name = md5(@first_last_name),
@@ -22,8 +22,8 @@ SET
   status = @status,
   currency = @currency,
   gross = replace(@gross, ',', ''),
-  fee = replace(@fee, ',', ''),
-  net = replace(@net, ',', ''),
+  fee = if(@fee <> '', replace(@fee, ',', ''), 0),
+  net = if(@net <> '', replace(@net, ',', ''), replace(@gross, ',', '')),
   from_email = md5(@from_email),
   to_email = @to_email,
   transaction_id = @transaction_id,
