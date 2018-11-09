@@ -2,7 +2,7 @@
 
 DB=$1
 
-QUERY="LOAD DATA INFILE '/var/lib/mysql-files/subscriptions.csv'
+QUERY="LOAD DATA INFILE '/var/lib/mysql-files/stripe_subscriptions.csv'
 REPLACE
 INTO TABLE stripe_subscriptions
 COLUMNS TERMINATED BY ','
@@ -39,7 +39,7 @@ mysql ${DB} -e "${QUERY}"
 echo "subscriptions - done\n"
 
 
-QUERY="LOAD DATA INFILE '/var/lib/mysql-files/payments.csv'
+QUERY="LOAD DATA INFILE '/var/lib/mysql-files/stripe_payments.csv'
 REPLACE
 INTO TABLE stripe_payments
 COLUMNS TERMINATED BY ','
@@ -110,7 +110,7 @@ mysql ${DB} -e "${QUERY}"
 echo "payments - done\n"
 
 
-QUERY="LOAD DATA INFILE '/var/lib/mysql-files/invoices.csv'
+QUERY="LOAD DATA INFILE '/var/lib/mysql-files/stripe_invoices.csv'
 REPLACE
 INTO TABLE stripe_invoices
 COLUMNS TERMINATED BY ','
