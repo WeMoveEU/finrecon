@@ -125,7 +125,7 @@ SET
   payment_id = @payment_id,
   customer_id = @customer_id,
   subscription_id = @subscription_id,
-  amount_due = @amount_due / 100,
+  amount_due = REPLACE(@amount_due, ',', '') / 100,
   application_fee = @application_fee,
   billing = @billing,
   closed = IF(@closed = 'false', FALSE, TRUE),
@@ -140,12 +140,12 @@ SET
   period_end_date = @period_end_date,
   period_start_date = @period_start_date,
   starting_balance = @starting_balance,
-  subtotal = @subtotal / 100,
-  tax = @tax / 100,
+  subtotal = REPLACE(@subtotal, ',', '') / 100,
+  tax = REPLACE(@tax, ',', '') / 100,
   tax_percent = IF(@tax_percent != '', @tax_percent, NULL),
-  total = @total / 100,
+  total = REPLACE(@total, ',', '') / 100,
   customer_email = md5(@customer_email),
-  amount_paid = @amount_paid
+  amount_paid = REPLACE(@amount_paid, ',', '') / 100
   "
 
 mysql ${DB} -e "${QUERY}"
