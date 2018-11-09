@@ -30,6 +30,7 @@ CREATE TABLE stripe_payments (
   card_id VARCHAR(255) NOT NULL,
   invoice_id VARCHAR(255) NULL,
   description VARCHAR(255),
+  seller_message VARCHAR(255),
   created_date DATETIME,
   amount DECIMAL(20, 2) NOT NULL,
   amount_refunded DECIMAL(20, 2) NOT NULL,
@@ -103,5 +104,6 @@ CREATE TABLE stripe_invoices (
   tax DECIMAL(20, 2),
   tax_percent DECIMAL(20, 2),
   total DECIMAL(20, 2),
-  customer_email VARCHAR(255)
+  customer_email VARCHAR(255),
+  amount_paid DECIMAL(20, 2)
 );

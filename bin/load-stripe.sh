@@ -45,7 +45,7 @@ INTO TABLE stripe_payments
 COLUMNS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '\"'
 IGNORE 1 LINES
-(@id, @description, @created_date, @amount, @amount_refunded, @currency, @converted_amount, @converted_amount_refunded,
+(@id, @description, @seller_message, @created_date, @amount, @amount_refunded, @currency, @converted_amount, @converted_amount_refunded,
  @fee, @tax, @converted_currency, @mode, @status, @statement_description, @customer_id, @customer_description, @customer_email,
  @captured, @card_id, @card_last4, @card_brand, @card_funding, @card_exp_month, @card_exp_year, @card_name,
  @card_address_line1, @card_address_line2, @card_address_city, @card_address_state, @card_address_country,
@@ -59,6 +59,7 @@ SET
   card_id = @card_id,
   invoice_id = @invoice_id,
   description = @description,
+  seller_message = @seller_message,
   created_date = @created_date,
   amount = REPLACE(@amount, ',', '') / 100,
   amount_refunded = REPLACE(@amount_refunded, ',', '') / 100,
@@ -118,7 +119,7 @@ OPTIONALLY ENCLOSED BY '\"'
 IGNORE 1 LINES
 (@id, @amount_due, @application_fee, @billing, @payment_id, @closed, @currency, @customer_id,
  @date1, @discount, @due_date, @ending_balance, @forgiven, @number, @paid, @period_end_date, @period_start_date,
- @starting_balance, @subscription_id, @subtotal, @tax, @tax_percent, @total, @customer_email)
+ @starting_balance, @subscription_id, @subtotal, @tax, @tax_percent, @total, @customer_email, @amount_paid)
 SET
   id = @id,
   payment_id = @payment_id,
@@ -143,7 +144,9 @@ SET
   tax = @tax / 100,
   tax_percent = IF(@tax_percent != '', @tax_percent, NULL),
   total = @total / 100,
-  customer_email = md5(@customer_email)"
+  customer_email = md5(@customer_email),
+  amount_paid = @amount_paid
+  "
 
 mysql ${DB} -e "${QUERY}"
 echo "invoices - done\n"
