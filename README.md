@@ -26,9 +26,9 @@ GRANT SELECT, PROCESS, FILE, SHOW DATABASES, CREATE TEMPORARY TABLES, SHOW VIEW 
 ## How to load stripe
 
 * copy csv files to `secure_file_priv` localization, probably `/var/lib/mysql-files/`
-  * invoices.csv
-  * payments.csv
-  * subscriptions.csv
+  * stripe_invoices.csv
+  * stripe_payments.csv
+  * stripe_subscriptions.csv
 * go to bin/ directory
 * run the script
   * sh load-stripe.sh DATABASE

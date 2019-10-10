@@ -40,7 +40,7 @@ echo "subscriptions - done\n"
 
 
 QUERY="LOAD DATA INFILE '/var/lib/mysql-files/stripe_payments.csv'
-REPLACE
+IGNORE
 INTO TABLE stripe_payments
 COLUMNS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '\"'
