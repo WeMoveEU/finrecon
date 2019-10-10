@@ -51,8 +51,7 @@ IGNORE 1 LINES
  @card_address_line1, @card_address_line2, @card_address_city, @card_address_state, @card_address_country,
  @card_address_zip, @card_issue_country, @card_fingerprint, @card_cvc_status, @card_avs_zip_status, @card_avs_line1_status,
  @card_tokenization_method, @disputed_amount, @dispute_status, @dispute_reason, @dispute_date, @dispute_evidence_due_date,
- @invoice_id, @payment_source_type, @destination, @transfer, @interchange_costs, @merchant_service_charge, @transfer_group,
- @kind, @nonprofit_id)
+ @invoice_id, @payment_source_type, @destination, @transfer, @interchange_costs, @merchant_service_charge, @transfer_group)
 SET
   id = @id,
   customer_id = @customer_id,
@@ -103,9 +102,7 @@ SET
   transfer = @transfer,
   interchange_costs = REPLACE(@interchange_costs, ',', '') / 100,
   merchant_service_charge = REPLACE(@merchant_service_charge, ',', '') / 100,
-  transfer_group = @transfer_group,
-  kind = @kind,
-  nonprofit_id = @nonprofit_id"
+  transfer_group = @transfer_group"
 
 mysql ${DB} -e "${QUERY}"
 echo "payments - done\n"
