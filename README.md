@@ -32,3 +32,34 @@ GRANT SELECT, PROCESS, FILE, SHOW DATABASES, CREATE TEMPORARY TABLES, SHOW VIEW 
 * go to bin/ directory
 * run the script
   * sh load-stripe.sh DATABASE
+
+
+## How to prepare stripe source files
+
+### Invoices
+
+* go to Billing > Invoices https://dashboard.stripe.com/invoices
+* click Export
+  * Date range: All
+  * Columns: Custom (up to Amount Paid)
+  * click `Export` button and wait :-)
+* change name to stripe\_invoices.csv
+
+### Subscriptions
+
+* go to Billing > Subscriptions https://dashboard.stripe.com/subscriptions
+* click Export
+  * Date range: All
+  * Columns: Custom (up to Ended At)
+  * click `Export` button and wait :-)
+* change name to stripe\_subscriptions.csv
+
+### Payments
+
+* go to Payments https://dashboard.stripe.com/payments
+* click Export
+  * Date range: All
+  * Columns: Custom (up to Transfer group)
+  * click `Export` button and wait :-)
+* change name to stripe\_payments.csv
+
