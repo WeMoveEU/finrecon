@@ -12,7 +12,7 @@ GRANT SELECT, PROCESS, FILE, SHOW DATABASES, CREATE TEMPORARY TABLES, SHOW VIEW 
 * git clone this repo wherever you want
 * go to bin/ directory
 * sh install.sh DATABASE VERSION
-    * for each version beginning with the lowest version
+    * for each version beginning with the lowest version (incremental)
     * VERSION == 0.0.1, 0.0.2
 
 ## How to load paypal or bank
